@@ -1,0 +1,43 @@
+--- a/outputs/tiff.hpp
++++ b/outputs/tiff.hpp
+@@ -26,6 +26,7 @@
+ #include <boost/scoped_array.hpp>
+ 
+ #include <string>
++#include <stdint.h>
+ 
+ #include <tiffio.h>
+ 
+@@ -53,8 +54,8 @@
+ 
+ private:
+   TIFF   *tiff_;
+-  uint32  page_;
+-  uint32  row_;
++  uint32_t  page_;
++  uint32_t  row_;
+ 
+   boost::scoped_array< octet > partial_line_;
+   streamsize                   partial_size_;
+--- a/outputs/tiff.cpp
++++ b/outputs/tiff.cpp
+@@ -273,7 +273,7 @@
+ 
+   TIFFSetField (tiff_, TIFFTAG_SAMPLESPERPIXEL, ctx.comps ());
+ 
+-  uint16 pm = 0;                // uint16 is courtesy of tiffio.h
++  uint16_t pm = 0;
+   if (8 == ctx.depth())
+     {
+       if (3 == ctx.comps())
+--- a/sane/version.hpp
++++ b/sane/version.hpp
+@@ -37,7 +37,7 @@
+ #include <sane/sane.h>
+ }
+ 
+-#if !((SANE_MAJOR == SANE_CURRENT_MAJOR) && (SANE_MINOR == 0))
++#if !((SANE_MAJOR == SANE_CURRENT_MAJOR) && (SANE_MINOR <= 1))
+ #error "SANE installation violates versioning portability constraints."
+ #endif
+ 
