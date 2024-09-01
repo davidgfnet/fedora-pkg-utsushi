@@ -3,7 +3,7 @@
 
 Name:           utsushi
 Version:        3.65.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Next Generation Image Acquisition Utilities
 
 Vendor:         SEIKO EPSON CORPORATION
@@ -36,7 +36,6 @@ standard.
 %debug_package
 %endif
 
-
 %prep
 %setup -q -n %{upstream}-%{uversion}
 %patch -P 0 -p1
@@ -46,6 +45,8 @@ standard.
 %define udev_d %(pkg-config --variable=udevdir udev)
 
 %build
+export CFLAGS="${CFLAGS} -Wno-alloc-size-larger-than"
+export CXXFLAGS="${CXXFLAGS} -Wno-alloc-size-larger-than"
 %configure \
     --with-jpeg \
     --with-tiff \

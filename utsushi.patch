@@ -37,7 +37,7 @@
  }
  
 -#if !((SANE_MAJOR == SANE_CURRENT_MAJOR) && (SANE_MINOR == 0))
-+#if !((SANE_MAJOR == SANE_CURRENT_MAJOR) && (SANE_MINOR <= 1))
++#if !((SANE_MAJOR == SANE_CURRENT_MAJOR) && (SANE_MINOR <= 3))
  #error "SANE installation violates versioning portability constraints."
  #endif
  
